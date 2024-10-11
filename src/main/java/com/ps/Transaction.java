@@ -1,13 +1,22 @@
 package com.ps;
-// Creating a transaction class so we can call it in the Main class.
+//importing date and time tools
+
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+
+
+// Creating a transaction class and declaring my variables
+// making sure to use local date and local time variables to store the date+time better
 public class Transaction {
-    private String date;
-    private String time;
+    private LocalDate date;
+    private LocalTime time;
     private String description;
     private String vendor;
     private double amount;
 
-    public Transaction(String date, String time,String description,String vendor,double amount) {
+    // Setting up my constructor and giving all the variables a value
+    public Transaction(LocalDate date, LocalTime time, String description, String vendor, double amount) {
         this.date = date;
         this.time = time;
         this.description = description;
@@ -15,9 +24,9 @@ public class Transaction {
         this.amount = amount;
 
 
-
     }
 
+    // Getters and Setters to call this information
     public double getAmount() {
         return amount;
     }
@@ -26,11 +35,11 @@ public class Transaction {
         this.amount = amount;
     }
 
-    public String getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
-    public void setDate(String date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 
@@ -42,11 +51,11 @@ public class Transaction {
         this.description = description;
     }
 
-    public String getTime() {
+    public LocalTime getTime() {
         return time;
     }
 
-    public void setTime(String time) {
+    public void setTime(LocalTime time) {
         this.time = time;
     }
 
@@ -58,12 +67,16 @@ public class Transaction {
         this.vendor = vendor;
     }
 
+    // to string for clear info calling
+// making sure to use date and time formatter to display those times clearly
     @Override
     public String toString() {
+        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm:ss");
         return "Transaction{" +
                 "amount=" + amount +
-                ", date='" + date + '\'' +
-                ", time='" + time + '\'' +
+                ", date=" + date.format(dateFormatter) +
+                ", time=" + time.format(timeFormatter) +
                 ", description='" + description + '\'' +
                 ", vendor='" + vendor + '\'' +
                 '}';
