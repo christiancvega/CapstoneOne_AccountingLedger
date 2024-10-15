@@ -14,23 +14,83 @@ public class Main {
 
     public static void main(String[] args) {
 
-    // *** Begin creating a menu
+        // *** Begin creating a menu
 
-    // initialize the command variable to understand user input
+        // initialize the command variable to understand user input
+        int mainMenuCommand;
 // do
-        // Create a do whole loop for the main menu
+        do {
+            // Create a do whole loop for the main menu
 
             //main menu goes here (sout)
-        //try
-            // import the scanner and recieve input as a variable
-         // catch
+            System.out.println("Please enter an option");
+            System.out.println("1) Add Deposit ");
+            System.out.println("2) Make Payment (Debit) ");
+            System.out.println("3) Ledger ");
+            System.out.println("0) Exit ");
+            System.out.println("Command: ");
+            //try
+            try {
+                // import the scanner and recieve input as a variable
+                mainMenuCommand = commandScanner.nextInt();
+                // catch
+            } catch (InputMismatchException ime) {
+                ime.printStackTrace();
+                mainMenuCommand = 0;
+            }
+            //switch statements to match the options provided to the user
+            switch (mainMenuCommand) {
+                //create case/break for each option so we can call the corresponding method
+                case 1:
+                    addDeposit();
+                    break;
+                case 2:
+                    makePayment();
+                    break;
+                case 3:
+                    displaySubMenu();
+                    break;
+                case 0:
+                    System.out.println("Exiting ...");
+                    break;
+                // make sure to be able to handle invalid commands
+                default:
+                    System.out.println("Command not found, please try again");
 
-        //switch statements to match the options provided to the user
-        //create case/break for each option so we can call the corresponding method
-        // make sure to be able to handle invalid commands
-// while command is not 0
+            }
+            // while command is not 0
+        } while (mainMenuCommand != 0);
 // ** End Main Menu
     }
+// start creating my methods for all the commands
+    public static void addDeposit(){
+        System.out.println("Command for adding a deposit");
+    }
+    public static void makePayment(){
+        System.out.println("Command for adding a payment");
+    }
+    public static void displaySubMenu(){
+        System.out.println("Command to display SubMenu");
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
