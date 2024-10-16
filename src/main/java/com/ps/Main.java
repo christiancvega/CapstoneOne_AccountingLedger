@@ -112,28 +112,76 @@ public class Main {
         } while (subMenuCommand != 0);
     }
 
+    // methods to connect to our switch cases
     public static void displayAll() {
         System.out.println("Display all transactions");
     }
 
-    public static void displayDeposits () {
+    public static void displayDeposits() {
         System.out.println("Display all deposits");
     }
 
-    public static void displayPayements(){
+    public static void displayPayements() {
         System.out.println("Display all payments");
     }
 
+    // create method for reports menu (subsubmenu)
     public static void displayReportsMenu() {
-        System.out.println("Reports sub menu");
+        // initialize command
+        int reportsCommand;
+// create a do while loop
+        do {
+            System.out.println("1) Month To Date");
+            System.out.println("2) Previous Month");
+            System.out.println("3) Year To Date");
+            System.out.println("4) Previous Year");
+            System.out.println("5) Search by Vendor");
+            System.out.println("0) Back");
+            // get input from user
+            reportsCommand = commandScanner.nextInt();
+
+            switch (reportsCommand) {
+                case 1:
+                    displayMonthToDate();
+                    break;
+                case 2:
+                    displayPreviousMonth();
+                    break;
+                case 3:
+                    displayYearToDate();
+                    break;
+                case 4:
+                    displayPreviousYear();
+                    break;
+                case 5:
+                    searchByVendor();
+                case 0:
+                    System.out.println("Back to the ledger ");
+                    break;
+                default:
+                    System.out.println("Command not found. Try Again");
+            }
+
+
+        } while (reportsCommand != 0);
+    }
+// methods to connect to my cases
+    public static void displayMonthToDate() {
+        System.out.println("Display month to date");
     }
 
+    public static void displayPreviousMonth() {
+        System.out.println("Display previous month");
+    }
 
+    public static void displayYearToDate() {
+        System.out.println("Dislay year to date");
+    }
 
-
-
-
-
-
-
+    public static void displayPreviousYear() {
+        System.out.println("Display previous year");
+    }
+    public static void searchByVendor() {
+        System.out.println("Search by vendor");
+    }
 }
