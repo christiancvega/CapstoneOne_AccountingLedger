@@ -69,17 +69,13 @@ public class Transaction {
 
     // to string for clear info calling
 // making sure to use date and time formatter to display those times clearly
+
     @Override
     public String toString() {
-        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm:ss");
-        return "Transaction{" +
-                "amount=" + amount +
-                ", date=" + date.format(dateFormatter) +
-                ", time=" + time.format(timeFormatter) +
-                ", description='" + description + '\'' +
-                ", vendor='" + vendor + '\'' +
-                '}';
+        return String.format("%s, %s, %s, %s, %.2f",
+                time, date, description, vendor, amount);
     }
 }
+
+
 
