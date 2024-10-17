@@ -26,7 +26,7 @@ The main menu is the first screen the user sees in the accounting ledger. The us
 The add deposit option prompts the user to enter a description, vendor, and deposit amount, while getting the current time and date. The program then writes the transaction to the CSV file and states the deposit was added successfully.
 
 ### Make Payment
-![adddepositscreen.png](assets/adddepositscreen.png)
+![addpaymentscreen.png](assets/addpaymentscreen.png)
 
 The make payment screen is similar to the deposit screen, only that it records the transaction as a negative.
 
