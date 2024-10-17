@@ -2,6 +2,7 @@ package com.ps;
 //import my scanner and necessary apps
 
 import java.io.*;
+import java.time.LocalDateTime;
 import java.util.Scanner;
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -37,7 +38,7 @@ public class Main {
                 LocalTime time = LocalTime.parse(transactionData[1]);
                 String description = transactionData[2];
                 String vendor = transactionData[3];
-                float amount = Float.parseFloat(transactionData[4]);
+                double amount = Double.parseDouble(transactionData[4]);
 
                 Transaction transaction = new Transaction(date, time, description, vendor, amount);
                 transactions.add(transaction);
@@ -96,11 +97,60 @@ public class Main {
 
     // start creating my methods for all the commands
     public static void addDeposit() {
-        System.out.println("Command for adding a deposit");
+        //get the date and time for the deposit
+        LocalDate currentDate = LocalDate.now();
+        LocalTime currentTime = LocalTime.now();
+
+        //get a description for the deposit
+        System.out.println("Describe the deposit: ");
+        String description = inputScanner.nextLine();
+
+        // ask for vendor name
+        System.out.println("Vendor Name: ");
+        String vendor = inputScanner.nextLine();
+
+        // get the amount for the deposit
+        System.out.println("Deposit Amount: ");
+        double amount = inputScanner.nextDouble();
+
+        // create a new transaction
+        Transaction newTransaction = new Transaction(currentDate, currentTime, description, vendor, amount);
+        transactions.add(newTransaction);
+
+        try (BufferedWriter buffer = new BufferedWriter(new FileWriter("transactions.csv", true))) {
+            buffer.write(String.format("%s|%s|%s|%s|%.2f\n", currentDate, currentTime, description, vendor, amount));
+            System.out.println("Deposit added successfully");
+        } catch (IOException e) {
+            System.out.println("Error writing to file: " + e.getMessage());
+        }
+
     }
 
     public static void makePayment() {
-        System.out.println("Command for adding a payment");
+        // get date and time
+        LocalDate currentDate = LocalDate.now();
+        LocalTime currentTime = LocalTime.now();
+        // ask for the description
+        System.out.println("Description for payment:");
+        String description = inputScanner.nextLine();
+        // ask for the vendor name
+        System.out.println("Vendor: ");
+        String vendor = inputScanner.nextLine();
+        // ask for the amount of the payment
+        System.out.println("Payment Amount: ");
+        double amount = inputScanner.nextDouble();
+        amount = -amount; // to ensure the payment is record as negative
+        // create the new transaction
+        Transaction newTransaction = new Transaction(currentDate, currentTime, description, vendor, amount);
+
+        try (BufferedWriter buffer = new BufferedWriter(new FileWriter("transactions.csv", true))) {
+            buffer.write(String.format("%s|%s|%s|%s|%.2f%n", currentDate, currentTime, description, vendor, amount));
+            System.out.println("Payment recorded successfully");
+        } catch (IOException e) {
+            System.out.println("Error Writing to transactions file" + e.getMessage());
+        }
+
+
     }
 
     // create the sub menu with the ledger options
