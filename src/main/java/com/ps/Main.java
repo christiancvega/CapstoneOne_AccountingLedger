@@ -1,16 +1,23 @@
 package com.ps;
 //import my scanner and necessary apps
 
+import java.io.*;
 import java.util.Scanner;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.InputMismatchException;
+import java.util.ArrayList;
 
 public class Main {
+
+    // create my array list for transactions
+    static ArrayList<Transaction> transactions = new ArrayList<>();
+
     //create my scanners to recieve user input
     static Scanner commandScanner = new Scanner(System.in);
     static Scanner inputScanner = new Scanner(System.in);
+
 
     public static void main(String[] args) {
 
@@ -18,7 +25,31 @@ public class Main {
 
         // initialize the command variable to understand user input
         int mainMenuCommand;
-// do
+        // load transactions from the csv files
+        try {
+            BufferedReader buffy = new BufferedReader(new FileReader("transactions.csv"));
+            String header = buffy.readLine();
+            String input;
+            int nextEmptyIndex = 0;
+            while ((input = buffy.readLine()) != null) {
+                String[] transactionData = input.split("\\|");
+                LocalDate date = LocalDate.parse(transactionData[0]);
+                LocalTime time = LocalTime.parse(transactionData[1]);
+                String description = transactionData[2];
+                String vendor = transactionData[3];
+                float amount = Float.parseFloat(transactionData[4]);
+
+                Transaction transaction = new Transaction(date, time, description, vendor, amount);
+                transactions.add(transaction);
+            }
+            buffy.close();
+        } catch (IOException e) {
+            System.out.println("Error reading file: " + e.getMessage());
+        } catch (Exception e) {
+            System.out.println("Error processing transaction data: " + e.getMessage());
+        }
+
+        // do
         do {
             // Create a do whole loop for the main menu
 
@@ -99,7 +130,7 @@ public class Main {
                     displayDeposits();
                     break;
                 case 3:
-                    displayPayements();
+                    displayPayments();
                     break;
                 case 4:
                     displayReportsMenu();
@@ -121,7 +152,7 @@ public class Main {
         System.out.println("Display all deposits");
     }
 
-    public static void displayPayements() {
+    public static void displayPayments() {
         System.out.println("Display all payments");
     }
 
@@ -165,7 +196,8 @@ public class Main {
 
         } while (reportsCommand != 0);
     }
-// methods to connect to my cases
+
+    // methods to connect to my cases
     public static void displayMonthToDate() {
         System.out.println("Display month to date");
     }
@@ -181,6 +213,7 @@ public class Main {
     public static void displayPreviousYear() {
         System.out.println("Display previous year");
     }
+
     public static void searchByVendor() {
         System.out.println("Search by vendor");
     }
