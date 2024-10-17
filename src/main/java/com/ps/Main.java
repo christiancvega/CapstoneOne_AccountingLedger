@@ -55,11 +55,13 @@ public class Main {
             // Create a do whole loop for the main menu
 
             //main menu goes here (sout)
-            System.out.println("Please enter an option");
+            System.out.println("-----------------------------------------------------------");
+            System.out.println("Please enter an option: ");
             System.out.println("1) Add Deposit ");
             System.out.println("2) Make Payment (Debit) ");
             System.out.println("3) Ledger ");
             System.out.println("0) Exit ");
+            System.out.println("-----------------------------------------------------------");
             System.out.println("Command: ");
             //try
             try {
@@ -160,12 +162,14 @@ public class Main {
         // do
         do {
             // display the sub menu
+            System.out.println("-----------------------------------------------------------");
             System.out.println("Please enter an option: ");
             System.out.println("1) All ");
             System.out.println("2) Deposits ");
             System.out.println("3) Payments ");
             System.out.println("4) Reports ");
             System.out.println("0) Home ");
+            System.out.println("-----------------------------------------------------------");
             System.out.println("Command: ");
 
             // get input from user
@@ -245,12 +249,16 @@ public class Main {
         int reportsCommand;
 // create a do while loop
         do {
+            System.out.println("-----------------------------------------------------------");
+            System.out.println("Please enter an option: ");
             System.out.println("1) Month To Date");
             System.out.println("2) Previous Month");
             System.out.println("3) Year To Date");
             System.out.println("4) Previous Year");
             System.out.println("5) Search by Vendor");
             System.out.println("0) Back");
+            System.out.println("-----------------------------------------------------------");
+            System.out.println("Command: ");
             // get input from user
             reportsCommand = commandScanner.nextInt();
 
@@ -365,6 +373,7 @@ public class Main {
     }
     public static void searchByVendor() {
         commandScanner.nextLine();
+
         System.out.println("Enter the vendor name:");
         String vendorName = inputScanner.nextLine();
 
