@@ -13,7 +13,7 @@ Users can produce reports for specific time frames, including the current month,
 ### - Search by vendor
 The application enables quick searches for transactions associated with a specific vendor.
 
-## Menu Structure
+## com.ps.Main.Menu Structure
 
 ### Home Screen
 ![mainmenuscreen.png](assets/mainmenuscreen.png)
@@ -30,7 +30,7 @@ The add deposit option prompts the user to enter a description, vendor, and depo
 
 The make payment screen is similar to the deposit screen, only that it records the transaction as a negative.
 
-## Ledger Menu
+## Ledger com.ps.Main.Menu
 ![ledgerscreen.png](assets/ledgerscreen.png)
 
 When the ledger screen is accessed, it introduces a sub menu to the viewer, now allowing for the user to have the option of viewing all transactions, all deposits, or all payments. The 4th option would be to access the 3rd Reports menu. Here is a sample of the "All Transactions" option.
@@ -40,7 +40,7 @@ When the ledger screen is accessed, it introduces a sub menu to the viewer, now 
 
 The all transactions options prints out a structured, easy to read, transaction list convinient for the user.
 
-## Reports Menu
+## Reports com.ps.Main.Menu
 ![reportsmenu.png](assets/reportsmenu.png)
 
 The reports menu allows the user to request refined reports for viewing transactions meeting certain criteria. The reports menu allows the user to request based on month to date, year to date, and other time based reports. Also, it allows the user the option to search by vendor.
