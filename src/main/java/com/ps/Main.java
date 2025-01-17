@@ -2,7 +2,7 @@ package com.ps;
 import static com.ps.DisplaySubMenu.displaySubMenu;
 import static com.ps.TransactionSearch.*;
 import static com.ps.SearchByDate.*;
-import static com.ps.Action.*;
+import static com.ps.ActionMethods.*;
 
 //import my scanner and necessary apps
 
@@ -39,7 +39,8 @@ public class Main {
             System.out.println("-----------------------------------------------------------");
             System.out.println("Command: ");
             //try
-            try {
+        int mainMenuCommand;
+        try {
                 // import the scanner and recieve input as a variable
                 mainMenuCommand = commandScanner.nextInt();
                 // catch
@@ -71,4 +72,4 @@ public class Main {
         } while (mainMenuCommand != 0);
 // ** End Main com.ps.Main.Menu
     }
-    }
+    
