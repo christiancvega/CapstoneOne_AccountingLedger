@@ -1,16 +1,13 @@
 package com.ps;
-import static com.ps.Main.transactions;
 import static com.ps.TransactionSearch.*;
 import static com.ps.SearchByDate.*;
 
 //import my scanner and necessary apps
 
 import java.io.*;
-import java.time.LocalDateTime;
 import java.util.Scanner;
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
 import java.util.InputMismatchException;
 import java.util.ArrayList;
 
@@ -98,7 +95,7 @@ public class Main {
             }
             // while command is not 0
         } while (mainMenuCommand != 0);
-// ** End Main Menu
+// ** End Main com.ps.Main.Menu
     }
 
     // start creating my methods for all the commands
