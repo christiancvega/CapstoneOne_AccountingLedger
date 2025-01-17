@@ -1,33 +1,33 @@
 package com.ps;
 
 import java.time.LocalDate;
+import java.time.Month;
+import java.util.List;
 
-import static com.ps.Main.*;
+import static com.ps.Main.transactions;
 
 public class SearchByDate {
 
-    // methods to connect to my cases
+
+    private static void displayTransactionsInRange(LocalDate startDate, LocalDate endDate) {
+        System.out.println("Transactions between " + startDate + " and " + endDate + ":");
+        System.out.println("Time, Date, Description, Vendor, Amount");
+        System.out.println("-----------------------------------------------------------");
+
+        for (Transaction transaction : transactions.getTransactions()) {
+            if ((transaction.getDate().isAfter(startDate.minusDays(1)) || transaction.getDate().isEqual(startDate))
+                    && (transaction.getDate().isBefore(endDate.plusDays(1)))) {
+                System.out.println(transaction);
+            }
+        }
+        System.out.println("-----------------------------------------------------------");
+    }
+
     public static void displayMonthToDate() {
-        //Get the current date first and get first day of the month
         LocalDate currentDate = LocalDate.now();
         LocalDate firstDayOfMonth = currentDate.withDayOfMonth(1);
 
-        System.out.println("This month's transactions: ");
-        System.out.println("Time, Date, Description, Vendor, Amount");
-        System.out.println("---------------------------------------");
-
-
-        for (Transaction transaction : transactions) {
-            if ((transaction.getDate().isAfter(firstDayOfMonth.minusDays(1)) || transaction.getDate().isEqual(firstDayOfMonth))
-                    && transaction.getDate().isBefore(currentDate.plusDays(1))) {
-                System.out.println(transaction);
-
-            }
-
-
-        }
-        System.out.println("---------------------------------------");
-
+        displayTransactionsInRange(firstDayOfMonth, currentDate);
     }
 
     public static void displayPreviousMonth() {
@@ -35,38 +35,14 @@ public class SearchByDate {
         LocalDate firstDayOfPreviousMonth = currentDate.minusMonths(1).withDayOfMonth(1);
         LocalDate lastDayOfPreviousMonth = currentDate.minusMonths(1).withDayOfMonth(currentDate.minusMonths(1).lengthOfMonth());
 
-        System.out.println("Transactions for the previous month:");
-        System.out.println("Time, Date, Description, Vendor, Amount");
-        System.out.println("-----------------------------------------------------------");
-
-
-        for (Transaction transaction : transactions) {
-            if ((transaction.getDate().isAfter(firstDayOfPreviousMonth.minusDays(1)) || transaction.getDate().isEqual(firstDayOfPreviousMonth))
-                    && (transaction.getDate().isBefore(lastDayOfPreviousMonth.plusDays(1)))) {
-                System.out.println(transaction);
-
-            }
-        }
-
-        System.out.println("-----------------------------------------------------------");
+        displayTransactionsInRange(firstDayOfPreviousMonth, lastDayOfPreviousMonth);
     }
 
     public static void displayYearToDate() {
         LocalDate currentDate = LocalDate.now();
         LocalDate firstDayOfYear = currentDate.withDayOfYear(1);
 
-        System.out.println("Transactions for the current year:");
-        System.out.println("Time, Date, Description, Vendor, Amount");
-        System.out.println("-----------------------------------------------------------");
-
-
-        for (Transaction transaction : transactions) {
-            if (transaction.getDate().isAfter(firstDayOfYear.minusDays(1)) && transaction.getDate().isBefore(currentDate.plusDays(1))) {
-                System.out.println(transaction);
-
-            }
-        }
-        System.out.println("-----------------------------------------------------------");
+        displayTransactionsInRange(firstDayOfYear, currentDate);
     }
 
     public static void displayPreviousYear() {
@@ -74,35 +50,22 @@ public class SearchByDate {
         LocalDate firstDayOfPreviousYear = currentDate.minusYears(1).withDayOfYear(1);
         LocalDate lastDayOfPreviousYear = currentDate.minusYears(1).withDayOfYear(currentDate.minusYears(1).lengthOfYear());
 
-        System.out.println("Transactions for the previous year:");
-        System.out.println("Time, Date, Description, Vendor, Amount");
-        System.out.println("-----------------------------------------------------------");
-
-
-        for (Transaction transaction : transactions) {
-            if (transaction.getDate().isAfter(firstDayOfPreviousYear.minusDays(1)) && transaction.getDate().isBefore(lastDayOfPreviousYear.plusDays(1))) {
-                System.out.println(transaction);
-            }
-        }
-        System.out.println("-----------------------------------------------------------");
+        displayTransactionsInRange(firstDayOfPreviousYear, lastDayOfPreviousYear);
     }
 
     public static void searchByVendor() {
-        commandScanner.nextLine();
-
         System.out.println("Enter the vendor name:");
-        String vendorName = inputScanner.nextLine();
+        String vendorName = Main.inputScanner.nextLine();
 
         System.out.println("Transactions for vendor: " + vendorName);
         System.out.println("Time, Date, Description, Vendor, Amount");
         System.out.println("-----------------------------------------------------------");
 
-        for (Transaction transaction : transactions) {
+        for (Transaction transaction : transactions.getTransactions()) {
             if (transaction.getVendor().equalsIgnoreCase(vendorName)) {
                 System.out.println(transaction);
             }
         }
         System.out.println("-----------------------------------------------------------");
     }
-
 }

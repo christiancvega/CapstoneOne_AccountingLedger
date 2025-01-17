@@ -6,22 +6,15 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
-import static com.ps.Main.transactions;
-
 public class FileWriter {
 
-    public static void main(String[] args) {
 
-        // *** Begin creating a menu
+    public static void loadTransactions() {
+        try (BufferedReader buffy = new BufferedReader(new FileReader("transactions.csv"))) {
 
-        // initialize the command variable to understand user input
-        int mainMenuCommand;
-        // load transactions from the csv files
-        try {
-            BufferedReader buffy = new BufferedReader(new FileReader("transactions.csv"));
             String header = buffy.readLine();
             String input;
-            int nextEmptyIndex = 0;
+
             while ((input = buffy.readLine()) != null) {
                 String[] transactionData = input.split("\\|");
                 LocalDate date = LocalDate.parse(transactionData[0]);
@@ -30,14 +23,16 @@ public class FileWriter {
                 String vendor = transactionData[3];
                 double amount = Double.parseDouble(transactionData[4]);
 
+
                 Transaction transaction = new Transaction(date, time, description, vendor, amount);
-                transactions.add(transaction);
+
+
+                Main.transactions.add(transaction);
             }
-            buffy.close();
         } catch (IOException e) {
             System.out.println("Error reading file: " + e.getMessage());
         } catch (Exception e) {
             System.out.println("Error processing transaction data: " + e.getMessage());
         }
-
-    }}
+    }
+}
