@@ -7,7 +7,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import static com.ps.Main.inputScanner;
 import static com.ps.Main.transactions;
-public class Action {
+public class ActionMethods {
     // start creating my methods for all the commands
     public static void addDeposit() {
         //get the date and time for the deposit

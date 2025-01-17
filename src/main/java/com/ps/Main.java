@@ -1,7 +1,7 @@
 package com.ps;
 import static com.ps.TransactionSearch.*;
 import static com.ps.SearchByDate.*;
-import static com.ps.Action.*;
+import static com.ps.ActionMethods.*;
 
 //import my scanner and necessary apps
 
