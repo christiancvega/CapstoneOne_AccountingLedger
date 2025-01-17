@@ -1,0 +1,15 @@
+-- Create a database for the project
+CREATE DATABASE transaction_db;
+
+-- Use the newly created database
+USE transaction_db;
+
+-- Create a table to store transactions
+CREATE TABLE transactions (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    date DATE NOT NULL,
+    time TIME NOT NULL,
+    description VARCHAR(255) NOT NULL,
+    vendor VARCHAR(255) NOT NULL,
+    amount DECIMAL(10, 2) NOT NULL
+);
